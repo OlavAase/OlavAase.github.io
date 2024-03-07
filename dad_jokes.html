@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dad-joke API</title>
+</head>
+<body>
+    <main>
+        <p id="joke">Click the button to get a joke</p>
+
+        <button id="joke-btn">Get a dad joke</button>
+    </main>
+
+    <script>
+        let jokeEl = document.getElementById("joke")
+        let jokeBtn = document.getElementById("joke-btn")
+
+        jokeBtn.addEventListener("click",generateJoke)
+
+        async function generateJoke(){
+            console.log("hei")
+
+            let url = "https://icanhazdadjoke.com/"
+
+            let config = {
+                headers: {
+                    "Accept" : "application/json"
+                }
+            }
+
+            let response = await fetch(url,config)
+
+            let data = await response.json()
+
+            console.log(data)
+
+            
+
+            jokeEl.innerHTML = data["joke"]
+        }
+
+
+    </script>
+</body>
+</html>
